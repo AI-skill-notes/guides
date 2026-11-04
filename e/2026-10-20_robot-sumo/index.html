@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opus 5.5 VS GPT-6 Astra 로봇 스모: 두 모델의 판단 한국어 풀이 · AI스킬노트 자료실</title><meta name="description" content="Opus 5.5와 GPT-6 Astra가 로봇 스모에서 내린 판단을 한국어로 풀었어요.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#F0EEE6;--ink:#141413;--paper:#FAF9F5;--fog:#E8E6DC;--coral:#D97757;--mute:#5E5D59;--side:clamp(16px,4vw,56px)}
+*{box-sizing:border-box} html,body{background:var(--paper)}
+body{margin:0;color:var(--ink);font:17px/1.75 "IBM Plex Sans KR",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit} img{max-width:100%;display:block} :focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+.top{background:var(--sky)}
+.top .in{max-width:1080px;margin:0 auto;padding:22px var(--side) 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(20px,4vw,48px);align-items:center}
+.back{grid-column:1/-1;font-weight:700;text-decoration:none} .back:hover{text-decoration:underline}
+h1{font:400 clamp(30px,4vw,52px)/1.15 "Black Han Sans",sans-serif;margin:0 0 14px;word-break:keep-all}
+.lead{margin:0 0 20px;font-size:18px;word-break:keep-all}
+.pic{display:grid;place-items:center;background:var(--ink);aspect-ratio:16/9;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover} .pic img.v{width:auto;object-fit:contain}
+.btn{display:inline-block;text-decoration:none;font:700 16px "IBM Plex Sans KR";padding:11px 18px;border-radius:4px;background:var(--coral);color:#FAF9F5}
+.btn:hover{background:#C6613F}
+.doc{max-width:820px;margin:0 auto;padding:40px var(--side) 64px;word-break:keep-all}
+.doc > h1:first-child{display:none}
+.doc h2{font:400 clamp(24px,2.6vw,32px)/1.25 "Black Han Sans";margin:48px 0 12px}
+.doc h3{font:700 19px "IBM Plex Sans KR";margin:28px 0 8px}
+.doc a{overflow-wrap:anywhere;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--coral)}
+.doc a.file{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700;padding:3px 10px;border-radius:4px}
+.doc code{background:var(--fog);padding:1px 6px;border-radius:3px;font-size:.9em;word-break:break-all}
+.doc pre{background:var(--ink);color:var(--paper);padding:16px;overflow:auto;border-radius:4px} .doc pre code{background:none;padding:0}
+.tw{overflow-x:auto;margin:16px 0}
+.doc table{border-collapse:collapse;font-size:15px;min-width:100%}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--fog)}
+.doc th{background:var(--sky);white-space:nowrap}
+.doc blockquote{margin:16px 0;padding:4px 16px;border-left:5px solid var(--coral);background:var(--sky)}
+.doc img{margin:12px 0;border:1px solid var(--fog)}
+.part{border-top:6px solid var(--ink);margin-top:56px;padding-top:8px}
+footer{max-width:820px;margin:0 auto;padding:0 var(--side) 40px;color:var(--mute);font-size:15px}
+@media (max-width:760px){.top .in{grid-template-columns:1fr} .pic{order:-1} .back{order:-2}}
+</style></head><body>
+<header class="top"><div class="in"><a class="back" href="../../">← 자료 모두 보기</a>
+<div><h1>Opus 5.5 VS GPT-6 Astra 로봇 스모: 두 모델의 판단 한국어 풀이</h1><p class="lead">Opus 5.5와 GPT-6 Astra가 로봇 스모에서 내린 판단을 한국어로 풀었어요.</p><a class="btn" href="https://youtu.be/cgM5TJlPMhc" target="_blank" rel="noopener">영상 보기</a></div><a class="pic" href="https://youtu.be/cgM5TJlPMhc" target="_blank" rel="noopener" aria-label="영상 보기"><img src="../../img/2026-10-20_robot-sumo.jpg" alt="Opus 5.5 VS GPT-6 Astra 로봇 스모: 두 모델의 판단 한국어 풀이 영상 표지" class="v"></a></div></header>
+<main class="doc"><h1>Opus 5.5 VS GPT-6 Astra 로봇 스모: 두 모델의 판단 한국어 풀이</h1>
+<ul>
+<li>원본 영상: Jiafei Duan (@DJiafei) X 게시물 <a href="https://x.com/DJiafei/status/2102770624305500207" target="_blank" rel="noopener">https://x.com/DJiafei/status/2102770624305500207</a></li>
+<li>실험(원본 게시물 요약): MuJoCo 가상 경기장의 Unitree G1 로봇 두 대에 GPT-6 Astra와 Claude Opus 5.5를 하나씩 넣음. 시뮬레이션 2초마다 로봇 상태 → LLM → 관절 목표 → 움직임. 상대를 링 밖으로 밀면 승리, 원본 게시물 기준 31초에 Astra 승.</li>
+<li>아래는 영상 마지막 10초(원본 20.7~30.7초) 화면에 나온 두 모델의 판단 문장(화면에서 잘린 그대로)과 AI스킬노트의 한국어 풀이예요. edge는 화면에 표시된 값이에요(링 끝까지의 거리로 보임).</li>
+</ul>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>원본 시각</th>
+<th>GPT-6 Astra 원문</th>
+<th>한국어 풀이</th>
+<th>edge</th>
+<th>Claude Opus 5.5 원문</th>
+<th>한국어 풀이</th>
+<th>edge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20.7초</td>
+<td>Free the trapped right arm overhead, then clamp i…</td>
+<td>잡힌 오른팔을 위로 빼고 다시 붙잡기</td>
+<td>1.36m</td>
+<td>Point-blank low drive, arms at pelvis height, pus…</td>
+<td>바짝 붙어 낮게 밀기, 팔은 골반 높이</td>
+<td>1.45m</td>
+</tr>
+<tr>
+<td>22.0초</td>
+<td>Reverse inward momentum with a low southwest driv…</td>
+<td>낮게 남서쪽으로 밀어 흐름 뒤집기</td>
+<td>0.96m</td>
+<td>Drive opponent NE along their outward drift towar…</td>
+<td>밀려나는 쪽(북동)으로 상대 밀기</td>
+<td>1.56m</td>
+</tr>
+<tr>
+<td>24.0초</td>
+<td>Drive south through contact; widen the right arm</td>
+<td>맞붙은 채 남쪽으로 밀기, 오른팔은 넓게</td>
+<td>1.15m</td>
+<td>Low drive pushing opponent north-east toward thei…</td>
+<td>낮게 북동쪽으로 상대 밀기</td>
+<td>1.59m</td>
+</tr>
+<tr>
+<td>26.0초</td>
+<td>Drive west through the opponent with low forearms</td>
+<td>낮은 팔뚝으로 서쪽으로 밀기</td>
+<td>1.06m</td>
+<td>Opponent is close to the east: low straight-arm d…</td>
+<td>상대가 동쪽 가까이, 팔 뻗어 낮게 밀기</td>
+<td>1.34m</td>
+</tr>
+<tr>
+<td>28.0초</td>
+<td>Drive north through torso contact, lifting and ex…</td>
+<td>몸통을 붙이고 북쪽으로 밀며 들어 올리기</td>
+<td>1.13m</td>
+<td>Low drive pushing opponent south-east toward thei…</td>
+<td>낮게 남동쪽으로 상대 밀기</td>
+<td>0.85m</td>
+</tr>
+<tr>
+<td>30.0초</td>
+<td>Drive east through extended palms to finish the n…</td>
+<td>손바닥을 뻗어 동쪽으로 밀어 마무리</td>
+<td>0.81m</td>
+<td>Near edge: sidestep south-west off opponent's pus…</td>
+<td>링 끝이다! 남서쪽으로 비켜 피하기</td>
+<td>0.39m</td>
+</tr>
+</tbody>
+</table></div>
+<p>한 판 결과라 다시 하면 달라질 수 있어요. 영상의 저작권은 원작자에게 있어요.</p>
+<p>AI스킬노트 · 유튜브 @ai스킬노트</p></main>
+<footer>AI스킬노트 무료 자료실 · 광고·협찬 아님 · <a href="../../">다른 자료 찾기</a></footer>
+</body></html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12억 명이 쓰는 ChatGPT의 아키텍처 비밀: AI 챗봇 아키텍처 지도 · AI스킬노트 자료실</title><meta name="description" content="12억 명이 쓰는 ChatGPT 같은 챗봇이 어떻게 버티는지 그린 아키텍처 지도예요.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#F0EEE6;--ink:#141413;--paper:#FAF9F5;--fog:#E8E6DC;--coral:#D97757;--mute:#5E5D59;--side:clamp(16px,4vw,56px)}
+*{box-sizing:border-box} html,body{background:var(--paper)}
+body{margin:0;color:var(--ink);font:17px/1.75 "IBM Plex Sans KR",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit} img{max-width:100%;display:block} :focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+.top{background:var(--sky)}
+.top .in{max-width:1080px;margin:0 auto;padding:22px var(--side) 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(20px,4vw,48px);align-items:center}
+.back{grid-column:1/-1;font-weight:700;text-decoration:none} .back:hover{text-decoration:underline}
+h1{font:400 clamp(30px,4vw,52px)/1.15 "Black Han Sans",sans-serif;margin:0 0 14px;word-break:keep-all}
+.lead{margin:0 0 20px;font-size:18px;word-break:keep-all}
+.pic{display:grid;place-items:center;background:var(--ink);aspect-ratio:16/9;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover} .pic img.v{width:auto;object-fit:contain}
+.btn{display:inline-block;text-decoration:none;font:700 16px "IBM Plex Sans KR";padding:11px 18px;border-radius:4px;background:var(--coral);color:#FAF9F5}
+.btn:hover{background:#C6613F}
+.doc{max-width:820px;margin:0 auto;padding:40px var(--side) 64px;word-break:keep-all}
+.doc > h1:first-child{display:none}
+.doc h2{font:400 clamp(24px,2.6vw,32px)/1.25 "Black Han Sans";margin:48px 0 12px}
+.doc h3{font:700 19px "IBM Plex Sans KR";margin:28px 0 8px}
+.doc a{overflow-wrap:anywhere;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--coral)}
+.doc a.file{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700;padding:3px 10px;border-radius:4px}
+.doc code{background:var(--fog);padding:1px 6px;border-radius:3px;font-size:.9em;word-break:break-all}
+.doc pre{background:var(--ink);color:var(--paper);padding:16px;overflow:auto;border-radius:4px} .doc pre code{background:none;padding:0}
+.tw{overflow-x:auto;margin:16px 0}
+.doc table{border-collapse:collapse;font-size:15px;min-width:100%}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--fog)}
+.doc th{background:var(--sky);white-space:nowrap}
+.doc blockquote{margin:16px 0;padding:4px 16px;border-left:5px solid var(--coral);background:var(--sky)}
+.doc img{margin:12px 0;border:1px solid var(--fog)}
+.part{border-top:6px solid var(--ink);margin-top:56px;padding-top:8px}
+footer{max-width:820px;margin:0 auto;padding:0 var(--side) 40px;color:var(--mute);font-size:15px}
+@media (max-width:760px){.top .in{grid-template-columns:1fr} .pic{order:-1} .back{order:-2}}
+</style></head><body>
+<header class="top"><div class="in"><a class="back" href="../../">← 자료 모두 보기</a>
+<div><h1>12억 명이 쓰는 ChatGPT의 아키텍처 비밀: AI 챗봇 아키텍처 지도</h1><p class="lead">12억 명이 쓰는 ChatGPT 같은 챗봇이 어떻게 버티는지 그린 아키텍처 지도예요.</p><a class="btn" href="https://youtu.be/jaG2ECcKWt4" target="_blank" rel="noopener">영상 보기</a></div><a class="pic" href="https://youtu.be/jaG2ECcKWt4" target="_blank" rel="noopener" aria-label="영상 보기"><img src="../../img/2026-10-24_ai-chatbot-map.jpg" alt="12억 명이 쓰는 ChatGPT의 아키텍처 비밀: AI 챗봇 아키텍처 지도 영상 표지" class="h"></a></div></header>
+<main class="doc"><h1>12억 명이 쓰는 ChatGPT의 아키텍처 비밀: AI 챗봇 아키텍처 지도</h1>
+<ul>
+<li>영상(AI스킬노트 롱폼, 토요일 저녁 7시 공개): <a href="https://youtu.be/jaG2ECcKWt4" target="_blank" rel="noopener">https://youtu.be/jaG2ECcKWt4</a></li>
+<li>서버 한 대에서 사용자 100만 명 규모까지, 막힐 때마다 더하는 상자 여덟 개를 정리했어요.</li>
+</ul>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>파일</th>
+<th>내용</th>
+<th>공개</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ai_chatbot_map_kit.pdf</td>
+<td>아키텍처 지도, 정거장 여덟 개 요약표(막힌 곳 · 더한 상자 · 예시 도구 · 공식 근거), 대기 실험 결과, 정거장별 AI에게 물어볼 문장, 체크리스트 (5쪽)</td>
+<td>영상 공개 뒤 이틀</td>
+</tr>
+<tr>
+<td>wait_bench.py</td>
+<td>영상 첫 번째 정거장의 대기 실험 코드(파이썬 표준 라이브러리만, 내 컴퓨터 안에서만 통신)</td>
+<td>영상 공개 뒤 이틀</td>
+</tr>
+<tr>
+<td><a href="#checklist">checklist.md</a></td>
+<td>오늘 확인할 다섯 가지</td>
+<td>계속</td>
+</tr>
+</tbody>
+</table></div>
+<p>실험은 2026-10-12에 컴퓨터 한 대에서, 실제 AI 대신 정해진 시간 뒤에 답하는 시험용 서버로 쟀어요. 숫자는 환경마다 달라요. 정거장 순서와 판단은 공식 문서와 기업 기술 블로그를 바탕으로 한 우리 정리예요. 광고·협찬 아님.</p>
+<h2>실행 키트: 공개 기간이 끝났어요</h2>
+<p>실행 키트(ai_chatbot_map_kit.pdf, wait_bench.py)는 영상 공개 후 48시간 동안만 열어 뒀어요(~ 2026-10-26 19:00 KST). 요약과 체크리스트는 계속 볼 수 있어요.
+- 다음 실행 키트는 수·토요일 저녁 7시, 새 롱폼과 함께 올라와요.
+- 놓치지 않으려면 채널을 구독하고 🔔 알림을 켜 두세요: <a href="https://www.youtube.com/channel/UC9nFHiLsVpcQxVoOPR28CQg?sub_confirmation=1" target="_blank" rel="noopener">https://www.youtube.com/channel/UC9nFHiLsVpcQxVoOPR28CQg?sub_confirmation=1</a></p><section class="part" id="checklist"><h2>AI 챗봇 아키텍처 지도 체크리스트 (AI스킬노트)</h2>
+<p>서버 한 대에서 사용자 100만 명 규모까지, 막힐 때마다 더하는 상자 여덟 개를 오늘 확인할 일로 옮긴 목록이에요.</p>
+<ul>
+<li>[ ] 막히면 먼저 무엇이 기다리는지 본다</li>
+<li>[ ] 상자는 막힌 문제가 생길 때 하나씩 더한다</li>
+<li>[ ] AI 한도 앞에는 대기열과 재시도 규칙을 둔다</li>
+<li>[ ] 서버 메모리에 대화를 남기지 않는다</li>
+<li>[ ] 샤딩은 복제본과 캐시로 버틸 수 없을 때</li>
+</ul>
+<p>정거장: 서버 한 대 → DB 분리 → 서버 여러 대 → 캐시 → 대기열과 한도 → DB 복제와 샤딩 → CDN → 모니터링</p></section></main>
+<footer>AI스킬노트 무료 자료실 · 광고·협찬 아님 · <a href="../../">다른 자료 찾기</a></footer>
+</body></html>
