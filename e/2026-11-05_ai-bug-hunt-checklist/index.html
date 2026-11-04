@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI로 내 코드 버그 찾기: 복사용 프롬프트와 검토 체크리스트 · AI스킬노트 자료실</title><meta name="description" content="이 변경에서 실제로 문제가 될 버그만 찾아 줘.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#F0EEE6;--ink:#141413;--paper:#FAF9F5;--fog:#E8E6DC;--line:#DEDBD0;--coral:#D97757;--coral-d:#B85A3B;--mute:#5E5D59}
+*{box-sizing:border-box} html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.7 "IBM Plex Sans KR",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit} img{display:block;max-width:100%} :focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.nav{position:sticky;top:0;z-index:20;background:rgba(250,249,245,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--fog)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.logo{font:400 22px/1 "Black Han Sans",sans-serif;text-decoration:none;white-space:nowrap}
+.logo b{color:var(--coral);font-weight:400}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav li a{display:block;padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15.5px;white-space:nowrap;color:var(--mute)}
+.nav li a:hover{color:var(--ink);background:var(--fog)}
+.nav li a[aria-current]{color:var(--ink);font-weight:700;background:var(--sky)}
+footer.site{border-top:1px solid var(--fog);color:var(--mute);font-size:14.5px}
+footer.site .wrap{padding-top:24px;padding-bottom:36px}
+@media (max-width:560px){.nav .wrap{height:56px}.logo{font-size:19px}.nav li a{padding:7px 10px;font-size:14.5px}}
+.page{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:56px;padding-top:36px;padding-bottom:80px}
+.back{display:inline-block;color:var(--coral-d);font-weight:700;text-decoration:none;margin-bottom:22px} .back:hover{text-decoration:underline}
+.kind{color:var(--coral-d);font-weight:700;font-size:15px;margin:0 0 10px}
+.page h1{font:700 clamp(30px,3.8vw,44px)/1.3 "IBM Plex Sans KR",sans-serif;letter-spacing:-.01em;margin:0 0 14px;word-break:keep-all}
+.lead{font-size:18.5px;color:var(--mute);margin:0 0 22px;word-break:keep-all}
+.acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-bottom:28px;border-bottom:1px solid var(--fog);margin-bottom:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font:700 15.5px "IBM Plex Sans KR";padding:10px 16px;border-radius:8px;background:var(--ink);color:var(--paper)}
+.btn:hover{background:#3D3D3A} .soon{color:var(--mute);font-weight:500}
+.doc{word-break:keep-all;min-width:0}
+.doc > h1:first-child{display:none}
+.doc h2{font:700 clamp(23px,2.4vw,28px)/1.35 "IBM Plex Sans KR";margin:52px 0 14px;scroll-margin-top:84px}
+.doc h3{font:700 19px "IBM Plex Sans KR";margin:30px 0 8px}
+.doc a{overflow-wrap:anywhere;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--coral)}
+.doc a.file{display:inline-block;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;padding:4px 12px;border-radius:6px}
+.doc code{background:var(--fog);padding:1px 6px;border-radius:4px;font-size:.9em;word-break:break-all}
+.doc pre{position:relative;background:#262624;color:#F0EEE6;padding:18px 18px 16px;overflow:auto;border-radius:10px;font-size:15px;line-height:1.65}
+.doc pre code{background:none;padding:0;word-break:normal;white-space:pre}
+.copy{position:absolute;top:10px;right:10px;border:1px solid #55544F;background:#262624;color:#F0EEE6;border-radius:6px;font:700 13px "IBM Plex Sans KR";padding:4px 10px;cursor:pointer}
+.copy:hover{background:#3D3D3A}
+.tw{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:10px}
+.doc table{border-collapse:collapse;font-size:15px;min-width:100%}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--fog)}
+.doc tr:last-child td{border-bottom:0}
+.doc th{background:var(--sky);white-space:nowrap}
+.doc blockquote{margin:18px 0;padding:6px 18px;border-left:4px solid var(--coral);background:var(--sky);border-radius:0 8px 8px 0}
+.doc img{margin:14px 0;border:1px solid var(--line);border-radius:8px}
+.doc li{margin:4px 0}
+.part{margin-top:56px;padding-top:4px;border-top:1px solid var(--line)}
+.toc{position:sticky;top:88px;align-self:start;border:1px solid var(--line);border-radius:12px;padding:18px 18px 14px;background:#fff}
+.toc b{display:block;font-size:14px;margin-bottom:8px}
+.toc ol{margin:0;padding-left:20px;font-size:14.5px;line-height:1.5;color:var(--mute)}
+.toc li{margin:0 0 9px} .toc a{text-decoration:none} .toc a:hover{color:var(--ink);text-decoration:underline}
+.cover{display:block;max-width:420px;margin:0 0 24px;border-radius:10px;overflow:hidden;background:var(--ink)}
+.cover img.v{max-height:360px;margin:0 auto}
+@media (max-width:980px){.page{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}}
+</style></head><body>
+<nav class="nav" aria-label="사이트 메뉴"><div class="wrap"><a class="logo" href="/guides/">AI스킬노트<b>.</b></a><ul><li><a href="/guides/" aria-current="page">자료실</a></li><li><a href="/guides/news/">Claude 소식</a></li><li><a href="/guides/ask/">요청하기</a></li><li><a href="https://www.youtube.com/@ai스킬노트" target="_blank" rel="noopener">유튜브</a></li></ul></div></nav>
+<div class="wrap page"><article>
+<a class="back" href="/guides/">← 모든 자료</a>
+<p class="kind">체크리스트 · 2026. 11. 5.</p>
+<h1>AI로 내 코드 버그 찾기: 복사용 프롬프트와 검토 체크리스트</h1><p class="lead">이 변경에서 실제로 문제가 될 버그만 찾아 줘.</p>
+<div class="acts"><a class="btn" href="https://youtu.be/eBzDYN58UKs" target="_blank" rel="noopener">▶ 영상 보기</a></div>
+<div class="doc"><h1>AI로 내 코드 버그 찾기: 복사용 프롬프트와 검토 체크리스트</h1>
+<ul>
+<li>출처: PostgreSQL 커미터 Robert Haas 블로그 'Postgres 19 is late, and it's AI's fault' <a href="https://rhaas.blogspot.com/2026/10/postgres-19-is-late-and-its-ais-fault.html" target="_blank" rel="noopener">https://rhaas.blogspot.com/2026/10/postgres-19-is-late-and-its-ais-fault.html</a></li>
+</ul>
+<h2 id="s1">글에서 나온 숫자</h2>
+<ul>
+<li>기능 동결 뒤부터 9월 25일까지 같은 기간을 비교했어요.</li>
+<li>출시를 앞둔 버전에 들어간 수정: 2025년 724개 → 2026년 1,169개</li>
+<li>그 앞 버전까지 고친 수정: 2025년 248개 → 2026년 433개</li>
+<li>큰 기능 3개가 8월 27일부터 9월 15일 사이에 빠졌어요.</li>
+</ul>
+<h2 id="s2">글의 핵심</h2>
+<ul>
+<li>AI로 버그 찾기는 훨씬 쉬워졌지만, 고치기는 그만큼 쉬워지지 않았어요.</li>
+<li>AI가 쓴 수정안은 늘 맞지는 않아서 결국 사람이 검토해요.</li>
+<li>앞으로 쓰는 기능은 AI가 살펴본다는 걸 전제로 개발해야 한다고 글쓴이는 말해요.</li>
+</ul>
+<h2 id="s3">복사용 프롬프트 (우리가 쓴 예시)</h2>
+<pre><code class="language-text">이 변경에서 실제로 문제가 될 버그만 찾아 줘.
+각 항목마다 다음을 적어 줘.
+1. 어느 파일 어느 줄인지
+2. 어떤 입력이나 상황에서 잘못되는지
+3. 잘못되면 사용자에게 무슨 일이 생기는지
+4. 직접 확인할 방법(테스트나 재현 순서)
+확신이 없는 항목은 '불확실'이라고 표시해 줘.
+코드 스타일 의견은 빼고, 고치기 전에 목록부터 보여 줘.
+</code></pre>
+<h2 id="s4">검토 체크리스트</h2>
+<ul>
+<li>[ ] AI가 말한 버그를 직접 재현해 봤나요?</li>
+<li>[ ] 수정안이 다른 기능을 깨지 않는지 테스트했나요?</li>
+<li>[ ] 이 코드를 아는 사람이 수정안을 읽었나요?</li>
+<li>[ ] 찾은 버그를 고치고 검토할 시간을 일정에 넣었나요?</li>
+<li>[ ] 이번에 못 고친 버그를 기록해 뒀나요?</li>
+</ul></div>
+</article><aside class="toc" aria-label="목차"><b>목차 · 4개</b><ol><li><a href="#s1">글에서 나온 숫자</a></li><li><a href="#s2">글의 핵심</a></li><li><a href="#s3">복사용 프롬프트 (우리가 쓴 예시)</a></li><li><a href="#s4">검토 체크리스트</a></li></ol></aside></div>
+<footer class="site"><div class="wrap">AI스킬노트 무료 자료실 · 광고·협찬 아님 · <a href="/guides/">다른 자료 찾기</a></div></footer>
+<script>
+document.querySelectorAll(".doc pre").forEach(p => { const b = document.createElement("button"); b.className = "copy"; b.type = "button"; b.textContent = "복사";
+  b.onclick = () => navigator.clipboard.writeText(p.innerText.replace(/복사(됨)?$/, "").trim()).then(() => { b.textContent = "복사됨"; setTimeout(() => b.textContent = "복사", 1500); });
+  p.appendChild(b); });
+</script>
+</body></html>
