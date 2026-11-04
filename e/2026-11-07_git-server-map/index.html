@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI로 내 코드 버그 찾기: 복사용 프롬프트와 검토 체크리스트 · AI스킬노트 자료실</title><meta name="description" content="이 변경에서 실제로 문제가 될 버그만 찾아 줘.">
+<title>커밋이 쏟아질 때 깃 서버는 어디서 막힐까: OpenAI 판도 지도 · AI스킬노트 자료실</title><meta name="description" content="도서관 비유와 점검 질문은 OpenAI 글(https://openai.com/index/scaling-git-at-openai/)을 바탕으로 한 우리 정리예요. 숫자는 영상 설명란에 적은 출처의 값이에요. 광고·협찬 아님.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -60,45 +60,43 @@ footer.site .wrap{padding-top:24px;padding-bottom:36px}
 <nav class="nav" aria-label="사이트 메뉴"><div class="wrap"><a class="logo" href="/guides/">AI스킬노트<b>.</b></a><ul><li><a href="/guides/" aria-current="page">자료실</a></li><li><a href="/guides/news/">Claude 소식</a></li><li><a href="/guides/ask/">요청하기</a></li><li><a href="https://www.youtube.com/@ai스킬노트" target="_blank" rel="noopener">유튜브</a></li></ul></div></nav>
 <div class="wrap page"><article>
 <a class="back" href="/guides/">← 모든 자료</a>
-<p class="kind">체크리스트 · 2026. 11. 5.</p>
-<h1>AI로 내 코드 버그 찾기: 복사용 프롬프트와 검토 체크리스트</h1><p class="lead">이 변경에서 실제로 문제가 될 버그만 찾아 줘.</p>
-<div class="acts"><a class="btn" href="https://youtu.be/eBzDYN58UKs" target="_blank" rel="noopener">▶ 영상 보기</a></div>
-<div class="doc"><h1>AI로 내 코드 버그 찾기: 복사용 프롬프트와 검토 체크리스트</h1>
+<p class="kind">자료 · 2026. 11. 7.</p>
+<h1>커밋이 쏟아질 때 깃 서버는 어디서 막힐까: OpenAI 판도 지도</h1><p class="lead">도서관 비유와 점검 질문은 OpenAI 글(https://openai.com/index/scaling-git-at-openai/)을 바탕으로 한 우리 정리예요. 숫자는 영상 설명란에 적은 출처의 값이에요. 광고·협찬 아님.</p>
+<div class="acts"><a class="btn" href="https://youtu.be/lK1ou1vUm_E" target="_blank" rel="noopener">▶ 영상 보기</a></div>
+<div class="doc"><h1>커밋이 쏟아질 때 깃 서버는 어디서 막힐까: OpenAI 판도 지도</h1>
 <ul>
-<li>출처: PostgreSQL 커미터 Robert Haas 블로그 'Postgres 19 is late, and it's AI's fault' <a href="https://rhaas.blogspot.com/2026/10/postgres-19-is-late-and-its-ais-fault.html" target="_blank" rel="noopener">https://rhaas.blogspot.com/2026/10/postgres-19-is-late-and-its-ais-fault.html</a></li>
+<li>OpenAI가 깃 서버 속을 '판도(Pando)'로 새로 만든 이야기를 도서관 비유로, 올리기와 가져오기가 막히는 곳을 따라 정리했어요.</li>
 </ul>
-<h2 id="s1">글에서 나온 숫자</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>파일</th>
+<th>내용</th>
+<th>공개</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="map.png">map.png</a></td>
+<td>깃 서버 막힘 지도 한 장</td>
+<td>계속</td>
+</tr>
+<tr>
+<td><a href="#checklist">checklist.md</a></td>
+<td>우리 시스템에 던질 점검 질문 다섯 가지</td>
+<td>계속</td>
+</tr>
+</tbody>
+</table></div>
+<p>도서관 비유와 점검 질문은 OpenAI 글(https://openai.com/index/scaling-git-at-openai/)을 바탕으로 한 우리 정리예요. 숫자는 영상 설명란에 적은 출처의 값이에요.</p><section class="part" id="checklist"><h2 id="s1">깃 서버 막힘 지도 체크리스트 (AI스킬노트)</h2>
 <ul>
-<li>기능 동결 뒤부터 9월 25일까지 같은 기간을 비교했어요.</li>
-<li>출시를 앞둔 버전에 들어간 수정: 2025년 724개 → 2026년 1,169개</li>
-<li>그 앞 버전까지 고친 수정: 2025년 248개 → 2026년 433개</li>
-<li>큰 기능 3개가 8월 27일부터 9월 15일 사이에 빠졌어요.</li>
-</ul>
-<h2 id="s2">글의 핵심</h2>
-<ul>
-<li>AI로 버그 찾기는 훨씬 쉬워졌지만, 고치기는 그만큼 쉬워지지 않았어요.</li>
-<li>AI가 쓴 수정안은 늘 맞지는 않아서 결국 사람이 검토해요.</li>
-<li>앞으로 쓰는 기능은 AI가 살펴본다는 걸 전제로 개발해야 한다고 글쓴이는 말해요.</li>
-</ul>
-<h2 id="s3">복사용 프롬프트 (우리가 쓴 예시)</h2>
-<pre><code class="language-text">이 변경에서 실제로 문제가 될 버그만 찾아 줘.
-각 항목마다 다음을 적어 줘.
-1. 어느 파일 어느 줄인지
-2. 어떤 입력이나 상황에서 잘못되는지
-3. 잘못되면 사용자에게 무슨 일이 생기는지
-4. 직접 확인할 방법(테스트나 재현 순서)
-확신이 없는 항목은 '불확실'이라고 표시해 줘.
-코드 스타일 의견은 빼고, 고치기 전에 목록부터 보여 줘.
-</code></pre>
-<h2 id="s4">검토 체크리스트</h2>
-<ul>
-<li>[ ] AI가 말한 버그를 직접 재현해 봤나요?</li>
-<li>[ ] 수정안이 다른 기능을 깨지 않는지 테스트했나요?</li>
-<li>[ ] 이 코드를 아는 사람이 수정안을 읽었나요?</li>
-<li>[ ] 찾은 버그를 고치고 검토할 시간을 일정에 넣었나요?</li>
-<li>[ ] 이번에 못 고친 버그를 기록해 뒀나요?</li>
-</ul></div>
-</article><aside class="toc" aria-label="목차"><b>목차 · 4개</b><ol><li><a href="#s1">글에서 나온 숫자</a></li><li><a href="#s2">글의 핵심</a></li><li><a href="#s3">복사용 프롬프트 (우리가 쓴 예시)</a></li><li><a href="#s4">검토 체크리스트</a></li></ol></aside></div>
+<li>[ ] 관계없는 쓰기끼리 같은 잠금·같은 장부·같은 행을 기다리는 곳이 있나?</li>
+<li>[ ] 같은 결과를 요청마다 새로 계산하는 곳이 있나? 그 결과를 바뀌지 않는 꾸러미로 만들어 재사용할 수 있나?</li>
+<li>[ ] 사용자에게 정말 필요한 건 '전체 순서'인가, '한 대상 안의 순서'인가?</li>
+<li>[ ] 운영 중에 바꿀 때, 앞에 대리인을 세워 옛 시스템과 새 시스템을 맞춰 둘 수 있나?</li>
+<li>[ ] 에이전트가 사람보다 훨씬 많이 쓰기 시작하면 우리 지도에서 어느 상자가 먼저 빨개지나?</li>
+</ul></section></div>
+</article><aside></aside></div>
 <footer class="site"><div class="wrap">AI스킬노트 무료 자료실 · 광고·협찬 아님 · <a href="/guides/">다른 자료 찾기</a></div></footer>
 <script>
 document.querySelectorAll(".doc pre").forEach(p => { const b = document.createElement("button"); b.className = "copy"; b.type = "button"; b.textContent = "복사";
